@@ -1,0 +1,43 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="../..concordion.css" rel="stylesheet" type="test/css" />
+    </head>
+    <body>
+        <h1>Shapes</h1>
+        <p>Shapes are a commonly used when developping toy projects.</p>
+        <p>This use is mainly due to the fact that shapes are simple and adequate for testing purposes.</p>
+        <p>In this project, only the getArea() method will be tested.</p>
+
+        <div concordion:example="square">
+            <h3>Squares</h3>
+            <p>
+                Squares are obviously the easiest shape to test since they only use one parameter, 
+                the size of a single side.
+            </p>
+            <p>Area tests:</p>
+            <table concordion:execute="#result = getArea(#width)">
+                <tr>
+                    <th concordion:set="#width">Width</th>
+                    <th concordion:assert-equals="#result">Area</th>
+                </tr>
+                <tr>
+                    <td>-1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>25</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
