@@ -1,16 +1,10 @@
-package grid.impl;
-
-import grid.Grid;
-
+package grid;
 
 /**
- *  ClassicGrid
+ *  Grid
  *
  *  The POJO of a the classic sudoku grid.
  */
-public class ClassicGrid implements Grid {
-
-    public ClassicGrid() {};
-
-    public void setPuzzle(String puzzle) {}
+public class Grid {
+    public Grid() {}
 }
