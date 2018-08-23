@@ -5,7 +5,8 @@ public abstract class Cell {
     protected int value;
     protected String notes;
 
-    protected Cell() {}
+    protected Cell() {
+    }
 
     protected Cell(int value) {
         this.value = value;
