@@ -9,15 +9,18 @@ Only two criterias are required for a puzzle to be considered valid:
 
 The following table gives some valid and invalid inputs:
 
-| [validateInput][][Input][input]                                                   | Description                             | [Valid input][valid] | [Invalidity reason][message] |
-| :-------------------------------------------------------------------------------: | :-------------------------------------: | :------------------: | :--------------------------: |
-| 000000000000000000000000000000000000000000000000000000000000000000000000000000000 | Empty grid, no hints.                   | true                 | (null)                       |
-| 010000000000000300000000000000050000000000000006000000000000090000000000080000000 | Some hints allowed.                     | true                 | (null)                       |
-| 0100000000000003000000000000000 0000000000000006000000000000090000000000080000000 | Contains a space, an illagal character. | false                | Invalid input puzzle.        |
-| 0100000000000003000000000000000abc00000000000006000000000000090000000000080000000 | Contains letters, illagal characters.   | false                | Invalid input puzzle.        |
-| 000000000000000000000000000000000000000000000000000000000000000000000080000000    | 78 characters long. 81 required.        | false                | Invalid input puzzle.        |
+| [validate][][Input][input]                                                                      | Description                             | [Valid input][valid] | [Invalidity reason][message] |
+| :--------------------------------------------------------------------------------------------   | :-------------------------------------: | :------------------: | :--------------------------: |
+| 000000000000000000000000000000000000000000000000000000000000000000000000000000000|                Empty grid, no hints.                   | true                 | (null)                       |
+| 00000000000000000000000000000000000000000000000000000000000000000000000000000000000|              83 characters input, 81 required.       | false                | Invalid input puzzle.        |
+| 000000000000000000000000000000000000000000000000000000000000000000000000000000|                   78 characters input, 81 required.       | false                | Invalid input puzzle.        |
+| 010000000000000300000000000000050000000000000006000000000000090000000000080000000|                Some hints allowed.                     | true                 | (null)                       |
+| 0000000000000000000000000000000 0000000000000000000000000000000000000000000000000|                Contains a space, an illegal character. | false                | Invalid input puzzle.        |
+| 0000000000000000000000000000000abc00000000000000000000000000000000000000000000000|                Contains letters, illegal characters.   | false                | Invalid input puzzle.        |
+| aa000000000000000000000000000000000000000000000000000000000000000000000000000000000|              Extra characters at the start.          | false                | Invalid input puzzle.        |
+| 000000000000000000000000000000000000000000000000000000000000000000000000000000000bb|              Extra characters at the end.            | false                | Invalid input puzzle.        |
 
-[validateInput]: - "#result = validateInput(#input)"
 [input]: - "#input"
+[validate]: - "#result = validateInput(#input)"
 [valid]: - "?=#result.validInput"
 [message]: - "?=#result.message"

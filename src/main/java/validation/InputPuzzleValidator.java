@@ -7,7 +7,7 @@ import exception.validation.InvalidInputException;
 
 public class InputPuzzleValidator {
    
-    private final String EXPRESSION = "[0-9]{81}";
+    private final String EXPRESSION = "^[0-9]{81}$";
 
     public InputPuzzleValidator() {}
 
