@@ -40,8 +40,6 @@ public class InputPuzzleValidatorTest {
             InputPuzzleValidator validator = new InputPuzzleValidator();
             String output = validator.validate(input);
 
-            System.out.println(input.equals(output));
-
             result.setValidInput(input.equals(output));
         } catch (InvalidInputException e) {
             result.setValidInput(false);
