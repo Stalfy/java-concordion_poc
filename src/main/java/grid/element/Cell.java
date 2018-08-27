@@ -12,7 +12,7 @@ public abstract class Cell {
         this.value = value;
     }
 
-    public abstract void setValue(int value);
+    public abstract Cell setValue(int value);
 
     public int getValue() {
         return this.value;

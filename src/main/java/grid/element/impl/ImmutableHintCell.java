@@ -2,14 +2,16 @@ package grid.element.impl;
 
 import grid.element.Cell;
 
-public class HintCell extends Cell {
+public class ImmutableHintCell extends Cell {
 
-    public HintCell() {}
+    public ImmutableHintCell(int value) {
+        super(value);
+    }
 
     @Override
     public Cell setValue(int value) {
-        // Become immutable upon setting the value.
-        return new ImmutableHintCell(value);
+        // Once the value is set, it cannot be changed.
+        return this;
     }
 
     @Override

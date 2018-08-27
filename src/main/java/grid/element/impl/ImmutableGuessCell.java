@@ -2,10 +2,10 @@ package grid.element.impl;
 
 import grid.element.Cell;
 
-public class NotesCell extends Cell {
+public class ImmutableGuessCell extends Cell {
 
-    public NotesCell() {
-        super();
+    public ImmutableGuessCell(int value) {
+        super(value);
     }
 
     @Override
@@ -16,6 +16,6 @@ public class NotesCell extends Cell {
 
     @Override
     public void setNotes(String notes) {
-        this.notes = notes;
+        // Do nothing.
     }
 }

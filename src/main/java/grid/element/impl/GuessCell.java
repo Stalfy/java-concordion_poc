@@ -4,13 +4,14 @@ import grid.element.Cell;
 
 public class GuessCell extends Cell {
 
-    public GuessCell(int value) {
-        super(value);
+    public GuessCell() {
+        super();
     }
 
     @Override
-    public void setValue(int value) {
-        // Do nothing.
+    public Cell setValue(int value) {
+        // Become immutable after setting the value.
+        return new ImmutableGuessCell(value);
     }
 
     @Override
