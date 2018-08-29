@@ -22,15 +22,15 @@ For all examples, refer to the following grid where 0s represent empty cells:
            
 ### [Updating Rows](- "RowsSuite")  
 Updating a row will remove all values already present in a row from said row's notes cells.  
-Given row 2, represented as [607008043](- "#row"), the [update](- "#result=updateLine(#row)") will leave only the values [1259](- "?=#result") in the notes.  
+Given row 2, represented as [607008043](- "#row"), the [update](- "#result=updateRow(#row)") will leave only the values [1259](- "?=#result") in the notes.  
 
 ### [Updating Columns](- "ColumnsSuite")  
 Updating a column will remove all values already present in a column from said column's notes cells.  
-Given column 8, represented as [049507100](- "#col"), the [update](- "#result=updateLine(#col)") will leave only the values [2368](- "?=#result") in the notes.  
+Given column 8, represented as [049507100](- "#col"), the [update](- "#result=updateCol(#col)") will leave only the values [2368](- "?=#result") in the notes.  
 
 ### [Updating Regions](- "RegionsSuite")  
 Updating a region will remove all values already present in a region from said region's notes cells.  
-Given the top left region, represented as [008607023](- "#region"), the [update](- "#result=updateLine(#region)") will leave only the values [1459](- "?=#result") in the notes.  
+Given the top left region, represented as [008607023](- "#region"), the [update](- "#result=updateRegion(#region)") will leave only the values [1459](- "?=#result") in the notes.  
 
 ### [Updating crossed lines and columns](- "CrossUpdateSuite")  
 The updater will also need to update cells from multiple sources of data.  
