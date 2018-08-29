@@ -75,8 +75,37 @@ public class NotesUpdaterTest {
         return list;
     }
 
+    public String crossUpdate(String rowInput, int rowIndex, String columnInput, int colIndex) {
+        colIndex = colIndex - 1;
+        rowIndex = rowIndex - 1;
+        
+        List<Cell> col = generateCellsList(columnInput);
+        List<Cell> row = generateCellsList(rowInput);
+
+        col.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+        row.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+
+        // Ensure that the cross-cell is the same instance is both lists.
+        col.set(rowIndex, row.get(colIndex));
+
+        List<List<Cell>> cols = new ArrayList<>();
+        cols.add(col);
+
+        List<List<Cell>> rows = new ArrayList<>();
+        rows.add(row);
+
+        Grid grid = generateMockGrid();
+        grid.setColumns(cols);
+        grid.setRows(rows);
+
+        NotesUpdater updater = new NotesUpdater();
+        updater.updateGridNotes(grid);
+
+        return col.get(rowIndex).getNotes();
+    }
+
     public String updateCol(String input) {
-    
+
         List<Cell> col = generateCellsList(input);
         col.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
 
@@ -94,7 +123,7 @@ public class NotesUpdaterTest {
     }
 
     public String updateRegion(String input) {
-    
+
         List<Cell> region = generateCellsList(input);
         region.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
 
@@ -112,7 +141,7 @@ public class NotesUpdaterTest {
     }
 
     public String updateRow(String input) {
-    
+
         List<Cell> row = generateCellsList(input);
         row.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
 

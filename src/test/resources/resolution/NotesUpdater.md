@@ -36,7 +36,7 @@ Given the top left region, represented as [008607023](- "#region"), the [update]
 The updater will also need to update cells from multiple sources of data.  
 For example, the cell at C2R2 will be updated by both column 2 and row 2.  
 This notes cell, using only row [2](- "#rowIndex") \([607008043](- "#row")\) and column [2](- "#colIndex") \([002306740](- "#column")\)
-to [update](- "#result=crossUpdate(#row, #rowIndex, #col, #colIndex)") shall only have [159](- "?=#result") as its values.
+to [update](- "#result=crossUpdate(#row, #rowIndex, #column, #colIndex)") shall only have [159](- "?=#result") as its values.
 
 ### [Full update](- "FullUpdateSuite")
 A full update is when the line, column and region of a cell are used to update the notes.  
