@@ -104,6 +104,44 @@ public class NotesUpdaterTest {
         return col.get(rowIndex).getNotes();
     }
 
+    public String fullUpdate(String rowInput, int rowIndex, String columnInput, int colIndex, String regionInput, int regionIndex) {
+        colIndex = colIndex - 1;
+        regionIndex = regionIndex - 1;
+        rowIndex = rowIndex - 1;
+        
+        List<Cell> col = generateCellsList(columnInput);
+        List<Cell> region = generateCellsList(regionInput);
+        List<Cell> row = generateCellsList(rowInput);
+
+        col.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+        region.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+        row.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+
+        // Ensure that the cell is the same instance is all lists.
+        col.set(rowIndex, row.get(colIndex));
+        region.set(regionIndex, row.get(colIndex));
+
+        List<List<Cell>> cols = new ArrayList<>();
+        cols.add(col);
+        
+        List<List<Cell>> regions = new ArrayList<>();
+        regions.add(region);
+
+        List<List<Cell>> rows = new ArrayList<>();
+        rows.add(row);
+
+        Grid grid = generateMockGrid();
+        grid.setColumns(cols);
+        grid.setRegions(regions);
+        grid.setRows(rows);
+
+        NotesUpdater updater = new NotesUpdater();
+        updater.updateGridNotes(grid);
+
+        return col.get(rowIndex).getNotes();
+    }
+
+
     public String updateCol(String input) {
 
         List<Cell> col = generateCellsList(input);
