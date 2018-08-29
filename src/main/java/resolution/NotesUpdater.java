@@ -10,16 +10,17 @@ public class NotesUpdater {
     public NotesUpdater() {}
 
     public void updateGridNotes(Grid grid) {
-        grid.getRows().stream().forEach(this::updateRow);
+        grid.getRows().stream().forEach(this::updateCells);
+        grid.getColumns().stream().forEach(this::updateCells);
     }
 
-    private void updateRow(List<Cell> row) {
+    private void updateCells(List<Cell> cells) {
         // Build the replacement regex.
         StringBuilder sb = new StringBuilder("[");
-        row.stream().filter((x) -> 0 != x.getValue()).forEach((c) -> sb.append(c.getValue()));
+        cells.stream().filter((x) -> 0 != x.getValue()).forEach((c) -> sb.append(c.getValue()));
         sb.append("]");
 
         // Then replace the values.
-        row.stream().filter((x) -> null != x.getNotes()).forEach((c) -> c.setNotes(c.getNotes().replaceAll(sb.toString(), "")));
+        cells.stream().filter((x) -> null != x.getNotes()).forEach((c) -> c.setNotes(c.getNotes().replaceAll(sb.toString(), "")));
     }
 }

@@ -50,21 +50,63 @@ public class NotesUpdaterTest {
         return cells;
     }
 
+    private Grid generateMockGrid() {
+        Grid grid = new Grid();
+
+        grid.setRows(createMockList());
+        grid.setColumns(createMockList());
+
+        return grid;
+    }
+
+    private List<List<Cell>> createMockList() {
+        List<List<Cell>> list = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+
+            List<Cell> line = new ArrayList<>();
+            for (int j = 0; j < 9; j++) {
+                line.add(new NotesCell());
+            }
+
+            list.add(line);
+        }
+
+        return list;
+    }
+
     public String updateRow(String input) {
     
         List<Cell> row = generateCellsList(input);
         row.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
 
-        List<List<Cell>> lines = new ArrayList<>();
-        lines.add(row);
+        List<List<Cell>> rows = new ArrayList<>();
+        rows.add(row);
 
-        Grid grid = new Grid();
-        grid.setRows(lines);
+        Grid grid = generateMockGrid();
+        grid.setRows(rows);
 
         NotesUpdater updater = new NotesUpdater();
         updater.updateGridNotes(grid);
 
         // Since it is a line update, any NotesCell is acceptable.
         return row.stream().filter((x) -> x instanceof NotesCell).findAny().get().getNotes();
+    }
+
+    public String updateCol(String input) {
+    
+        List<Cell> col = generateCellsList(input);
+        col.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+
+        List<List<Cell>> cols = new ArrayList<>();
+        cols.add(col);
+
+        Grid grid = generateMockGrid();
+        grid.setColumns(cols);
+
+        NotesUpdater updater = new NotesUpdater();
+        updater.updateGridNotes(grid);
+
+        // Since it is a line update, any NotesCell is acceptable.
+        return col.stream().filter((x) -> x instanceof NotesCell).findAny().get().getNotes();
     }
 }
