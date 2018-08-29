@@ -53,8 +53,9 @@ public class NotesUpdaterTest {
     private Grid generateMockGrid() {
         Grid grid = new Grid();
 
-        grid.setRows(createMockList());
         grid.setColumns(createMockList());
+        grid.setRegions(createMockList());
+        grid.setRows(createMockList());
 
         return grid;
     }
@@ -74,24 +75,6 @@ public class NotesUpdaterTest {
         return list;
     }
 
-    public String updateRow(String input) {
-    
-        List<Cell> row = generateCellsList(input);
-        row.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
-
-        List<List<Cell>> rows = new ArrayList<>();
-        rows.add(row);
-
-        Grid grid = generateMockGrid();
-        grid.setRows(rows);
-
-        NotesUpdater updater = new NotesUpdater();
-        updater.updateGridNotes(grid);
-
-        // Since it is a line update, any NotesCell is acceptable.
-        return row.stream().filter((x) -> x instanceof NotesCell).findAny().get().getNotes();
-    }
-
     public String updateCol(String input) {
     
         List<Cell> col = generateCellsList(input);
@@ -108,5 +91,41 @@ public class NotesUpdaterTest {
 
         // Since it is a line update, any NotesCell is acceptable.
         return col.stream().filter((x) -> x instanceof NotesCell).findAny().get().getNotes();
+    }
+
+    public String updateRegion(String input) {
+    
+        List<Cell> region = generateCellsList(input);
+        region.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+
+        List<List<Cell>> regions = new ArrayList<>();
+        regions.add(region);
+
+        Grid grid = generateMockGrid();
+        grid.setRegions(regions);
+
+        NotesUpdater updater = new NotesUpdater();
+        updater.updateGridNotes(grid);
+
+        // Since it is a line update, any NotesCell is acceptable.
+        return region.stream().filter((x) -> x instanceof NotesCell).findAny().get().getNotes();
+    }
+
+    public String updateRow(String input) {
+    
+        List<Cell> row = generateCellsList(input);
+        row.stream().filter((x) -> x instanceof NotesCell).forEach((c) -> c.setNotes(BASE_NOTES));
+
+        List<List<Cell>> rows = new ArrayList<>();
+        rows.add(row);
+
+        Grid grid = generateMockGrid();
+        grid.setRows(rows);
+
+        NotesUpdater updater = new NotesUpdater();
+        updater.updateGridNotes(grid);
+
+        // Since it is a line update, any NotesCell is acceptable.
+        return row.stream().filter((x) -> x instanceof NotesCell).findAny().get().getNotes();
     }
 }

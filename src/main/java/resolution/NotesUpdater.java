@@ -10,8 +10,9 @@ public class NotesUpdater {
     public NotesUpdater() {}
 
     public void updateGridNotes(Grid grid) {
-        grid.getRows().stream().forEach(this::updateCells);
         grid.getColumns().stream().forEach(this::updateCells);
+        grid.getRegions().stream().forEach(this::updateCells);
+        grid.getRows().stream().forEach(this::updateCells);
     }
 
     private void updateCells(List<Cell> cells) {

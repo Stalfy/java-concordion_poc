@@ -14,6 +14,7 @@ public class Grid {
     public final int DIMENSION = 9;
     private List<Cell> cells;
     private List<List<Cell>> columns;
+    private List<List<Cell>> regions;
     private List<List<Cell>> rows;
 
     public Grid() {}
@@ -32,6 +33,14 @@ public class Grid {
 
     public void setColumns(List<List<Cell>> columns) {
         this.columns = columns;
+    }
+
+    public List<List<Cell>> getRegions() {
+        return this.regions; 
+    }
+
+    public void setRegions(List<List<Cell>> regions) {
+        this.regions = regions;
     }
 
     public List<List<Cell>> getRows() {
