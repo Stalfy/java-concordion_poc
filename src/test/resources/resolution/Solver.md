@@ -30,7 +30,7 @@ See the NotesUpdater page for further details.
 
 #### 3. Replace NotesCells with a single value in its notes by GuessCells containing this note as a value  
 Finally, the notes cell with a single value in its notes get replaced by a GuessCell with this value.
-For example, cell C[8](- "#col")R[5](- "#row"), after one [pass](- "#result=singleStep(#col, #row)"), will have a value of [8](- "?=#result.getValue()").
+For example, cell C[8](- "#col")R[5](- "#row"), after one [pass](- "#result=singleStep(#col, #row)"), will have a value of [8](- "?=#result").
 
  
 ### [Outcomes](- "OutcomesSuite")  

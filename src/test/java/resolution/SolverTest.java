@@ -26,9 +26,9 @@ public class SolverTest {
         PuzzleGenerator generator = new PuzzleGenerator();
 
         Grid grid = generator.generateGrid(gridInput);
-        Solver solver = new Solver();
 
         try {
+            Solver solver = new Solver();
             Whitebox.invokeMethod(solver, "addNotes", grid);
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getSimpleName()).log(Level.SEVERE, "Exception occured.", e);
@@ -36,5 +36,22 @@ public class SolverTest {
         
         // Take the top left corner NotesCell.
         return grid.getRegions().get(0).get(0).getNotes();
+    }
+    
+    public int singleStep(int colIndex, int rowIndex) {
+        String gridInput = "008300000607008043023006590030070059700603002560080070076400810240800906000005700";
+
+        PuzzleGenerator generator = new PuzzleGenerator();
+        Grid grid = generator.generateGrid(gridInput);
+
+        try {
+            Solver solver = new Solver(new NotesUpdater());
+            Whitebox.invokeMethod(solver, "addNotes", grid);
+            Whitebox.invokeMethod(solver, "step", grid);
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getSimpleName()).log(Level.SEVERE, "Exception occured.", e);
+        }
+        
+        return grid.getRows().get(rowIndex - 1).get(colIndex - 1).getValue();
     }
 }
