@@ -37,7 +37,7 @@ For example, cell C[8](- "#col")R[5](- "#row"), after one [pass](- "#result=sing
 Only two outcomes are possible for this solver.  
 
 #### A. The puzzle is unsolvable
-If the grid still contains NotesCells after the [resolution process](- "#result=solveBadGrid()"), the solver will return a "[Puzzle cannot be solved.](- "?=result")" message.
+If the grid still contains NotesCells after the [resolution process](- "#result=solveBadGrid()"), the solver will return a "[Puzzle cannot be solved.](- "?=#result")" message.
 
 #### B. The puzzle is solved
-If the grid contains no NotesCells after the [resolution process](- "#result=solveGoodGrid()"), the solver will send a "[Puzzle solved.](- "?=result")" message.
+If the grid contains no NotesCells after the [resolution process](- "#result=solveGoodGrid()"), the solver will send a "[Puzzle solved.](- "?=#result")" message.

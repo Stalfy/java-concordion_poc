@@ -17,7 +17,7 @@ public class NotesUpdater {
 
     private void updateCells(List<Cell> cells) {
         // Build the replacement regex.
-        StringBuilder sb = new StringBuilder("[");
+        StringBuilder sb = new StringBuilder("[ ");
         cells.stream().filter((x) -> 0 != x.getValue()).forEach((c) -> sb.append(c.getValue()));
         sb.append("]");
 

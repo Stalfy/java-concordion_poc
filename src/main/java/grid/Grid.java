@@ -1,5 +1,6 @@
 package grid;
 
+import java.util.Collection;
 import java.util.List;
 
 import grid.element.Cell;
@@ -44,5 +45,12 @@ public class Grid {
 
     public void setRows(List<List<Cell>> rows) {
         this.rows = rows;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        rows.stream().flatMap(Collection::stream).forEach((x) -> sb.append(x.getValue()));
+        return sb.toString();
     }
 }

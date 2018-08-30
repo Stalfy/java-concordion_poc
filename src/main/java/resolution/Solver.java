@@ -1,5 +1,9 @@
 package resolution;
 
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import grid.Grid;
@@ -10,18 +14,41 @@ import resolution.result.ResolutionResult;
 
 public class Solver {
 
+    private final Map<Long, String> outcomes;
     private final String NOTES = "123456789";
+    private final String SOLVED_MSG = "Puzzle solved.";
+    private final String UNSOLVED_MSG = "Puzzle cannot be solved.";
+    
     private NotesUpdater updater;
 
-    public Solver() {}
+    public Solver() {
+        outcomes = new HashMap<>();
+        outcomes.put(0l, SOLVED_MSG);
+    }
 
     public Solver (NotesUpdater updater) {
+        this();
         this.updater = updater;
     }
 
     public ResolutionResult solve(Grid grid) {
-        step(grid);
-        return new ResolutionResult();
+        long notesCellsBeforeStep = 0;
+        long notesCellsAfterStep = 0;
+        addNotes(grid);
+
+        boolean keepSolving = true;
+        while(keepSolving) {
+            notesCellsBeforeStep = grid.getRows().stream().flatMap(Collection::stream).filter((x) -> x instanceof NotesCell).count();
+            step(grid);
+            notesCellsAfterStep = grid.getRows().stream().flatMap(Collection::stream).filter((x) -> x instanceof NotesCell).count();
+            keepSolving = (0 != notesCellsAfterStep) && (notesCellsAfterStep < notesCellsBeforeStep);
+        }
+
+        ResolutionResult result = new ResolutionResult();
+        result.setMessage(outcomes.getOrDefault(notesCellsAfterStep, UNSOLVED_MSG));
+        result.setResultGrid(grid);
+        
+        return result;
     }
 
     private void addNotes(Grid grid) {

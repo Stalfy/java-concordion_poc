@@ -15,6 +15,7 @@ import grid.element.impl.GuessCell;
 import grid.element.impl.NotesCell;
 import resolution.NotesUpdater;
 import resolution.Solver;
+import resolution.result.ResolutionResult;
 
 @RunWith(ConcordionRunner.class)
 public class SolverTest {
@@ -53,5 +54,29 @@ public class SolverTest {
         }
         
         return grid.getRows().get(rowIndex - 1).get(colIndex - 1).getValue();
+    }
+
+    public String solveBadGrid() {
+        String gridInput = "100000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+        PuzzleGenerator generator = new PuzzleGenerator();
+        Grid grid = generator.generateGrid(gridInput);
+
+        Solver solver = new Solver(new NotesUpdater());
+        ResolutionResult result = solver.solve(grid);
+        
+        return result.getMessage();
+    }
+
+    public String solveGoodGrid() {
+        String gridInput = "008300000607008043023006590030070059700603002560080070076400810240800906000005700";
+
+        PuzzleGenerator generator = new PuzzleGenerator();
+        Grid grid = generator.generateGrid(gridInput);
+
+        Solver solver = new Solver(new NotesUpdater());
+        ResolutionResult result = solver.solve(grid);
+       
+        return result.getMessage();
     }
 }
