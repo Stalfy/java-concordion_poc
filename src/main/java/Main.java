@@ -43,7 +43,7 @@ public class Main {
 
             ResolutionResult result = solver.solve(grid);
             logger.log(Level.INFO, result.getMessage() + "\n");
-            logger.log(Level.INFO, "Resulting Grid: \n" + pp.convert(grid));
+            logger.log(Level.INFO, "Resulting Grid: \n" + pp.convert(result.getResultGrid()));
         } catch (InvalidInputException e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
             exitCode = 1;
