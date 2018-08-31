@@ -31,6 +31,10 @@ public class Solver {
         this.updater = updater;
     }
 
+    public void setNotesUpdater(NotesUpdater updater) {
+        this.updater = updater;
+    }
+
     public ResolutionResult solve(Grid grid) {
         long notesCellsBeforeStep = 0;
         long notesCellsAfterStep = 0;
